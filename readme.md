@@ -29,18 +29,15 @@ This project provides a short lived sealed envelope system to protect card data 
 - Monitor and alert Log key creation and consumption and alert on abnormal patterns
 
 ## Environment variables
-Set these in a secure environment not included in source control
+create a env.php file and add this 
 ```
-DB_NAME=card_encrypt
-DB_USER=root
-DB_PASS=your_db_password
+<?php
+    $db_name = "card_encrypt";
+    $db_user = "root";
+    $db_pass = "*******";
+    $flw_secret = "FLWSECK_****-*************-X";
+    $flw_encryption_key = "FLWSECK_***********";
 
-REDIS_HOST=127.0.0.1
-REDIS_PORT=6379
-REDIS_AUTH=your_redis_password
-
-MASTER_KEY_B64=<base64 of sodium secret key used to encrypt per key secret material>
-APP_ORIGIN=https://yourapp.example.com
 ```
 
 ## Install and service setup
