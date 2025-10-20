@@ -5,8 +5,8 @@ import sodium from 'libsodium-wrappers';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 const baseURL = 'http://10.152.95.117/card-encryption/api';
-const KEY_NEW = `${baseURL}/key_new.php`;
-const SUBMIT = `${baseURL}/submit.php`;
+const KEY_NEW = `${baseURL}/key-new/`;
+const SUBMIT = `${baseURL}/submit/`;
 
 export default function App(){
     const [name,setName]=useState('');

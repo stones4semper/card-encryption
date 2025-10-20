@@ -2,7 +2,7 @@
     require_once __DIR__."/conn.php";
 
     $ip = $_SERVER["REMOTE_ADDR"];
-    enforceRateLimit($redis, $ip);
+    enforce_rate_limit($redis, $ip);
 
     $in = json_decode(file_get_contents("php://input"), true);
     $key_id = $in["key_id"] ?? "";
@@ -60,12 +60,12 @@
     }
 
     $req = json_decode($plain, true);
-    if (!isValidCard($req["card"] ?? [])) {
+    if (!is_valid_card($req["card"] ?? [])) {
         http_response_code(400);
         echo json_encode(["error" => "invalid card data"]);
         exit;
     }
 
-    logEvent("decryption_success", ["key_id" => $key_id]);
+    log_event("decryption_success", ["key_id" => $key_id]);
 
     echo json_encode(["ok" => true]);

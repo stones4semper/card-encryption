@@ -2,7 +2,7 @@
     require_once __DIR__."/conn.php";
 
     $ip = $_SERVER["REMOTE_ADDR"];
-    enforceRateLimit($redis, $ip);
+    enforce_rate_limit($redis, $ip);
 
     $ttl = 180;
     $kp = sodium_crypto_box_keypair();
@@ -15,7 +15,7 @@
     $value = base64_encode($sec) . ":" . base64_encode($pub) . ":" . $exp;
     $redis->setex($redisKey, $ttl, $value);
 
-    logEvent("key_created", ["key_id" => $key_id]);
+    log_event("key_created", ["key_id" => $key_id]);
 
     echo json_encode([
         "key_id" => $key_id,
