@@ -1,5 +1,6 @@
 <?php
-    require_once __DIR__."/env.php";
+    require_once dirname(__DIR__, 2)."/env.php";
+
     date_default_timezone_set('Africa/Lagos');
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
