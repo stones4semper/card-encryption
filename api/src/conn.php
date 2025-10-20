@@ -14,9 +14,17 @@
 
     require __DIR__.'/set-header.php';
 
-    if (class_exists('\Redis')) {
-        $redis = new \Redis();
-        $redis->connect('127.0.0.1', 6379);
-    } else $redis = new Predis\Client(['host'=>'127.0.0.1','port'=>6379]);
+    $redis = new \Redis();
+    $redis->connect($redis_host, $redis_port);
+
+    try {
+        $redis->ping();
+    } catch (RedisException $e) {
+        if (stripos($e->getMessage(), 'NOAUTH') !== false) {
+            $redis->auth($redis_password);
+        } else {
+            throw $e;
+        }
+    }
     
     require __DIR__.'/functions.php';
